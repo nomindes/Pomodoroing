@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoroing/screens/timer.dart';
+import 'package:pomodoroing/screens/home.dart';
 
 void main() {
   runApp(const App());
@@ -16,7 +16,7 @@ class App extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
-      home: Timer(),
+      home: const Home(),
     );
   }
 }
