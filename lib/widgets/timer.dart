@@ -9,13 +9,17 @@ class Timer extends StatefulWidget {
 }
 
 class _TimerState extends State<Timer> {
+  final controller = CountDownController();
+  final int duration = 15;
+  final int initialDuration = 15;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CircularCountDownTimer(
-          duration: 5,
-          controller: CountDownController(),
+          duration: duration,
+          controller: controller,
           width: MediaQuery.of(context).size.width / 2,
           height: MediaQuery.of(context).size.height / 2,
           ringColor: Colors.grey[300]!,
@@ -28,7 +32,7 @@ class _TimerState extends State<Timer> {
           strokeCap: StrokeCap.round,
           textStyle: const TextStyle(
               fontSize: 33.0, color: Colors.white, fontWeight: FontWeight.bold),
-          textFormat: CountdownTextFormat.S,
+          textFormat: CountdownTextFormat.MM_SS,
           isReverse: true,
           isReverseAnimation: false,
           isTimerTextShown: true,
@@ -44,12 +48,14 @@ class _TimerState extends State<Timer> {
           },
           timeFormatterFunction: (defaultFormatterFunction, duration) {
             if (duration.inSeconds == 0) {
-              return "Start";
+              return initialDuration;
             } else {
               return Function.apply(defaultFormatterFunction, [duration]);
             }
           },
         ),
+        ElevatedButton(
+            onPressed: () => controller.start(), child: Icon(Icons.start))
       ],
     );
   }
