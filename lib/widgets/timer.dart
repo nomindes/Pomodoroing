@@ -11,7 +11,7 @@ class Timer extends StatefulWidget {
 class _TimerState extends State<Timer> {
   final controller = CountDownController();
   final int duration = 15;
-  final int initialDuration = 15;
+  final String initialDuration = "00:15";
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,9 @@ class _TimerState extends State<Timer> {
           height: MediaQuery.of(context).size.height / 2,
           ringColor: Colors.grey[300]!,
           ringGradient: null,
-          fillColor: Colors.purpleAccent[100]!,
+          fillColor: Theme.of(context).colorScheme.primaryContainer,
           fillGradient: null,
-          backgroundColor: Colors.purple[500],
+          backgroundColor: Theme.of(context).colorScheme.primary,
           backgroundGradient: null,
           strokeWidth: 20.0,
           strokeCap: StrokeCap.round,
@@ -47,15 +47,23 @@ class _TimerState extends State<Timer> {
             debugPrint('Countdown Changed $timeStamp');
           },
           timeFormatterFunction: (defaultFormatterFunction, duration) {
-            if (duration.inSeconds == 0) {
+            if (duration.inMilliseconds == 0) {
               return initialDuration;
             } else {
               return Function.apply(defaultFormatterFunction, [duration]);
             }
           },
         ),
-        ElevatedButton(
-            onPressed: () => controller.start(), child: Icon(Icons.start))
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () {}, child: const Icon(Icons.play_arrow)),
+            ElevatedButton(
+                onPressed: () => controller.reset(),
+                child: const Icon(Icons.restart_alt))
+          ],
+        )
       ],
     );
   }
