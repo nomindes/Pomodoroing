@@ -10,8 +10,9 @@ class Timer extends StatefulWidget {
 
 class _TimerState extends State<Timer> {
   final controller = CountDownController();
-  final int duration = 15;
-  final String initialDuration = "00:15";
+  int duration = 15;
+  String initialDuration = "00:15";
+  bool isStarted = false;
 
   @override
   Widget build(BuildContext context) {
