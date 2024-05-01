@@ -51,14 +51,13 @@ class _TimerState extends State<Timer> {
                 },
                 onComplete: () {
                   debugPrint('Countdown Ended');
+                  TimerStatusNotifier.setPlaying(false);
                 },
                 onChange: (String timeStamp) {
                   debugPrint('Countdown Changed $timeStamp');
                 },
                 timeFormatterFunction: (defaultFormatterFunction, duration) {
                   if (duration.inMilliseconds == 0) {
-                    TimerStatusNotifier.setPlaying(false);
-                    // 修正必須 タイマーが終了したタイミングでボタン表示が変わらない
                     return initialDuration;
                   } else {
                     return Function.apply(defaultFormatterFunction, [duration]);
