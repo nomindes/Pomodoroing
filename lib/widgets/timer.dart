@@ -12,8 +12,8 @@ class Timer extends StatefulWidget {
 
 class _TimerState extends State<Timer> {
   final controller = CountDownController();
-  int duration = 15;
-  String initialDuration = "00:15";
+  int duration = 1500;
+  String initialDuration = "25:00";
   bool TimerStatus = false;
 
   @override
@@ -87,7 +87,7 @@ class _TimerState extends State<Timer> {
                       onPressed: () => controller.reset(),
                       child: const Icon(Icons.restart_alt))
                 ],
-              )
+              ),
             ],
           );
         },

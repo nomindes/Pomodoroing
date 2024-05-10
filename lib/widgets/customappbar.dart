@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoroing/screens/settings.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -10,6 +11,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: const Text("Pomodoroing⌛️"),
+      actions: [
+        IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Settings()));
+            },
+            icon: Icon(Icons.settings))
+      ],
     );
   }
 }
